@@ -2,10 +2,15 @@
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+/**
+ *  An GUI window for the user to interact with the program
+ *  @version 1.0
+ *  @since 4/5/2020
+ */
 public class View extends JFrame{
 
 	/**
-	 * 
+	 * The serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel app = new JLabel("An application to maintain student records");
@@ -16,6 +21,9 @@ public class View extends JFrame{
 	private JTextArea list = new JTextArea(20,40);
 	private JScrollPane bar = new JScrollPane(list);
 	
+	/**
+	 * Constructs the view object
+	 */
 	public View() {
 		super("Main Frame");
 		list.setEditable(false);
@@ -33,6 +41,10 @@ public class View extends JFrame{
 		add(mainPanel);
 	}
 	
+	/**
+	 * The action listeners for the buttons that the user will interact with
+	 * @param listener
+	 */
 	public void setActionListener(ActionListener listener) {
 		insert.addActionListener(listener);
 		find.addActionListener(listener);

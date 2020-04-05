@@ -11,12 +11,26 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-
+/**
+ * Handles the funcionality of te application
+ */
 public class Controller {
 	
+	/**
+	 * The GUI window
+	 */
 	private View myView;
+	/**
+	 * The data tree to store the data
+	 */
 	BinSearchTree tree;
+	/**
+	 * The listner for the requests from the user
+	 */
 	AddListener listener;
+	/**
+	 * The list to store each line from the input file
+	 */
 	ArrayList<String> list;
 	
 	public static void main(String[] args) {
@@ -32,11 +46,13 @@ public class Controller {
 		list = new ArrayList<String>();
 	}
 	
+	/**
+	 * A custom ActionListner to handle the requests of the application
+	 */
 	class AddListener implements ActionListener{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			if(e.getSource()==myView.getInsert()) {
 				JPanel pane = new JPanel();
 				JTextField id = new JTextField(10);
@@ -74,11 +90,23 @@ public class Controller {
 			}
 		}
 	}
-	
+	/**
+	 * Inserts a new student into the list
+	 * @param id ID of student
+	 * @param faculty Faculty f student
+	 * @param major The major the student is in
+	 * @param year The year of study of the student
+	 */
 	public void insert(String id, String faculty, String major, String year) {
 		this.tree.insert(id, faculty, major, year);
 	}
 	
+	/**
+	 * Search for a student from the list using his/her id.
+	 * If found, will display information with enw window.
+	 * If not found, will display Student not found message through new window.
+	 * @param id The ID of student.
+	 */
 	public void search(String id) {
 		Node n = this.tree.find(tree.root, id);
 		if(n!=null) {
@@ -89,6 +117,10 @@ public class Controller {
 			JOptionPane.showMessageDialog(myView,"Student not found");
 	}
 	
+	/**
+	 * Reads an input file an stores all the students' data to be inserted in a BST
+	 * @param fileName The name of the file to be read.
+	 */
 	public void createTree(String fileName) {
 		try {
 			File file = new File(fileName); //file reading code was adapted from: https://www.javatpoint.com/how-to-read-file-line-by-line-in-java
@@ -114,19 +146,29 @@ public class Controller {
 		ArrayList<String[]> array = this.makeArray(this.list);  	
 		
 		this.makeTree(array);
+		print();
 	}
 	
+	/**
+	 * Takes in a list off strings and splits it up to the various sections of the student information
+	 * @param list The list to read
+	 * @return an array list of strings
+	 */
 	public ArrayList<String[]> makeArray(ArrayList<String> list) {
 		String[] lineOfWords; 
 		ArrayList<String[]> array = new ArrayList<String[]>(); //each index in this ArrayList has an array of strings which is one line from the file
 		for(int i = 0; i < list.size(); i++) {
 			lineOfWords = list.get(i).split("\\s+");
-				array.add(lineOfWords); //adding the split String as a String array into "array"
+			array.add(lineOfWords); //adding the split String as a String array into "array"
 		}
 		
 		return array;		
 	}
 	
+	/**
+	 * Takes in the arraylist of strings and inserts it in the BST
+	 * @param array
+	 */
 	public void makeTree (ArrayList<String[]> array) {
 		for(String s[]: array) {
 			tree.insert(s[1], s[2], s[3], s[4]); 
@@ -134,6 +176,9 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Displays the BST in the GUI window
+	 */
 	public void print() {
 		StringWriter buffer = new StringWriter();
 		PrintWriter writer = new PrintWriter(buffer);
