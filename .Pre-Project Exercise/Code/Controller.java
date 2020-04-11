@@ -11,6 +11,11 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+public class Controller {
+	
+	private View myView;
+	BinSearchTree tree;
+	AddListener listener;
 /**
  * Handles the funcionality of te application
  */
@@ -53,6 +58,7 @@ public class Controller {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
 			if(e.getSource()==myView.getInsert()) {
 				JPanel pane = new JPanel();
 				JTextField id = new JTextField(10);
@@ -90,6 +96,7 @@ public class Controller {
 			}
 		}
 	}
+
 	/**
 	 * Inserts a new student into the list
 	 * @param id ID of student
@@ -100,7 +107,7 @@ public class Controller {
 	public void insert(String id, String faculty, String major, String year) {
 		this.tree.insert(id, faculty, major, year);
 	}
-	
+
 	/**
 	 * Search for a student from the list using his/her id.
 	 * If found, will display information with enw window.
@@ -146,6 +153,7 @@ public class Controller {
 		ArrayList<String[]> array = this.makeArray(this.list);  	
 		
 		this.makeTree(array);
+
 		print();
 	}
 	
@@ -159,13 +167,14 @@ public class Controller {
 		ArrayList<String[]> array = new ArrayList<String[]>(); //each index in this ArrayList has an array of strings which is one line from the file
 		for(int i = 0; i < list.size(); i++) {
 			lineOfWords = list.get(i).split("\\s+");
+				array.add(lineOfWords); //adding the split String as a String array into "array"
 			array.add(lineOfWords); //adding the split String as a String array into "array"
 		}
 		
 		return array;		
 	}
 	
-	/**
+/**
 	 * Takes in the arraylist of strings and inserts it in the BST
 	 * @param array
 	 */

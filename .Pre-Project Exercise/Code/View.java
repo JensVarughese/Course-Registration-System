@@ -2,6 +2,10 @@
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+public class View extends JFrame{
+
+	/**
+	 * 
 /**
  *  An GUI window for the user to interact with the program
  *  @version 1.0
