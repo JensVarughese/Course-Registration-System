@@ -1,5 +1,9 @@
-# ENSF 409 Course Registration System Milestone 3
+# ENSF 409 Course Registration System
 ---
+
+## About:
+A client server application that registers courses for students. Developed with Java using Java Eclipse.
+
 ## Members:
 
 | Name              | UCID     |             Email              |
@@ -16,6 +20,7 @@ For the Server Application, the file that will be run is:
 ```bash
 ServerCommController.java
 ```
+
 For the Client Application, the file that will be run is:
 ```bash
 ClientCommController.java
@@ -48,7 +53,3 @@ You can also make your own data tables, but be sure to keep the format:
 |   "INT"          |   "TEXT"   |   "INT"   |  "INT" | "INT" |
 
 , where all "INT"'s are defaulted to 0(zero).
-
-## Bonus Feature:
-The bonus feature for this project is the ability to login to existing users. The name of the student will behave like the username, and the id of the student will behave like the password. To sercure this data, the decision was made so that the id of users will never be displayed on the client application. If a name and id is entered, and it is not in the databse, a new student will be created with that name and id.
-
